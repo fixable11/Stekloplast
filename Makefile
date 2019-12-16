@@ -41,6 +41,12 @@ sniff:
 
 check-code: sniff test stan
 
+frontend-bash:
+	docker-compose exec node sh
+
+frontend-watch:
+	docker-compose exec node npm run watch
+
 perm:
 	sudo chown ${USER}:${USER} bootstrap/cache -R
 	sudo chown ${USER}:${USER} storage -R
@@ -48,3 +54,5 @@ perm:
 	sudo chown ${USER}:${USER} app/ -R
 	sudo chown ${USER}:${USER} config/ -R
 	sudo chown ${USER}:${USER} database/ -R
+	sudo chown ${USER}:${USER} public/ -R
+	sudo chown ${USER}:${USER} resources/ -R
