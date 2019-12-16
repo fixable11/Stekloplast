@@ -1,0 +1,6 @@
+172.28.0.1 - - [16/Dec/2019:10:56:45 +0000] "GET / HTTP/1.1" 200 2438 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36"
+172.28.0.1 - - [16/Dec/2019:10:56:45 +0000] "GET /favicon.ico HTTP/1.1" 200 0 "http://localhost:8080/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36"
+172.28.0.1 - - [16/Dec/2019:10:56:53 +0000] "GET /admin HTTP/1.1" 404 1564 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36"
+172.28.0.1 - - [16/Dec/2019:10:56:57 +0000] "GET /dsadas HTTP/1.1" 404 1564 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36"
+172.28.0.1 - - [16/Dec/2019:10:57:20 +0000] "GET / HTTP/1.1" 200 2438 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36"
+172.28.0.1 - - [16/Dec/2019:10:57:20 +0000] "GET /favicon.ico HTTP/1.1" 200 0 "http://localhost:8080/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36"
