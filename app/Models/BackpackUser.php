@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\User\User;
+use App\Models\User\User;
 use Backpack\CRUD\app\Models\Traits\InheritsRelationsFromParentModel;
 use Backpack\CRUD\app\Notifications\ResetPasswordNotification as ResetPasswordNotification;
 use Illuminate\Notifications\Notifiable;
