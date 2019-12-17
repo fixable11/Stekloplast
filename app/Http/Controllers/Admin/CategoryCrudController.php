@@ -25,7 +25,7 @@ class CategoryCrudController extends CrudController
     use CreateOperation;
     use UpdateOperation;
     use DeleteOperation;
-    use ShowOperation;
+    //use ShowOperation;
 
     /**
      * @throws Exception
@@ -43,7 +43,7 @@ class CategoryCrudController extends CrudController
         $this->crud->addColumn([
             'name' => 'parent_id',
             'type' => 'select',
-            'label' => 'Parent category',
+            'label' => 'Родительская категория',
             'entity' => 'parent',
             'attribute' => "name",
             'model' => Category::class,
@@ -57,10 +57,10 @@ class CategoryCrudController extends CrudController
         $this->crud->addField([
             'name' => 'name',
             'type' => 'text',
-            'label' => "Category name"
+            'label' => "Название категории"
         ]);
         $this->crud->addField([
-            'label' => "Parent category",
+            'label' => "Родительская категория",
             'type' => 'select',
             'name' => 'parent_id',
             'entity' => 'parent',

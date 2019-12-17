@@ -5,7 +5,7 @@ namespace App\Models;
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Model;
 
-class Category extends Model
+class Product extends Model
 {
     use CrudTrait;
 
@@ -15,10 +15,17 @@ class Category extends Model
     |--------------------------------------------------------------------------
     */
 
-    protected $table = 'categories';
-    // protected $primaryKey = 'id';
     public $timestamps = false;
+    protected $fakeColumns = ['attributes'];
+    protected $table = 'products';
+    protected $primaryKey = 'id';
     protected $guarded = ['id'];
+    protected $attributes = [
+        'attributes' => '{}',
+    ];
+    protected $casts = [
+        'attributes' => 'array'
+    ];
     // protected $fillable = [];
     // protected $hidden = [];
     // protected $dates = [];
@@ -29,26 +36,15 @@ class Category extends Model
     |--------------------------------------------------------------------------
     */
 
-
     /*
     |--------------------------------------------------------------------------
     | RELATIONS
     |--------------------------------------------------------------------------
     */
 
-    public function parent()
+    public function category()
     {
-        return $this->belongsTo(Category::class, 'parent_id');
-    }
-
-    public function children()
-    {
-        return $this->hasMany(Category::class, 'parent_id');
-    }
-
-    public function products()
-    {
-        return $this->hasMany(Product::class);
+        return $this->belongsTo(Category::class);
     }
 
     /*
