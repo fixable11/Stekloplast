@@ -40,7 +40,11 @@ class ProductCrudController extends CrudController
 
     protected function setupShowOperation()
     {
-        $this->crud->setColumns(['name']);
+        $this->crud->addColumn([
+            'name' => 'name',
+            'type' => 'text',
+            'label' => 'Наименование',
+        ]);
         $this->crud->addColumn([
             'name' => 'category_id',
             'type' => 'select',

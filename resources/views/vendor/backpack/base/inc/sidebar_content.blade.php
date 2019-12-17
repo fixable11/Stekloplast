@@ -5,4 +5,6 @@
 
 <li class='nav-item'><a class='nav-link' href='{{ backpack_url('product') }}'><i class='nav-icon fa fa-windows'></i> Продукты</a></li>
 <li class='nav-item'><a class='nav-link' href='{{ backpack_url('vacancy') }}'><i class='nav-icon fa fa-picture-o'></i> Вакансии</a></li>
-<li class='nav-item'><a class='nav-link' href='{{ backpack_url('phone') }}'><i class='nav-icon fa fa-phone'></i> Телефоны</a></li>
+<li class='nav-item'><a class='nav-link' href='{{ backpack_url('phone') }}'><i class='nav-icon fa fa-mobile-phone'></i> Телефоны</a></li>
+
+<li class='nav-item'><a class='nav-link' href='{{ backpack_url('contact') }}'><i class='nav-icon fa fa-phone'></i> Контакты</a></li>

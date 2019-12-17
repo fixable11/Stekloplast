@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\VacancyRequest;
+use App\Http\Requests\ContactRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
 use Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
@@ -13,11 +13,11 @@ use Backpack\CRUD\app\Library\CrudPanel\CrudPanel;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 
 /**
- * Class VacancyCrudController
+ * Class ContactCrudController
  * @package App\Http\Controllers\Admin
  * @property-read CrudPanel $crud
  */
-class VacancyCrudController extends CrudController
+class ContactCrudController extends CrudController
 {
     use ListOperation;
     use CreateOperation;
@@ -27,9 +27,9 @@ class VacancyCrudController extends CrudController
 
     public function setup()
     {
-        $this->crud->setModel('App\Models\Vacancy');
-        $this->crud->setRoute(config('backpack.base.route_prefix') . '/vacancy');
-        $this->crud->setEntityNameStrings('Вакансия', 'Вакансии');
+        $this->crud->setModel('App\Models\Contact');
+        $this->crud->setRoute(config('backpack.base.route_prefix') . '/contact');
+        $this->crud->setEntityNameStrings('контакт', 'контакты');
     }
 
     protected function setupShowOperation()
@@ -58,16 +58,11 @@ class VacancyCrudController extends CrudController
             'label' => "Описание", // Table column heading
             'type' => "text"
         ],);
-        $this->crud->addColumn([
-            'name' => "created_at",
-            'label' => "Создано в", // Table column heading
-            'type' => "datetime"
-        ],);
     }
 
     protected function setupCreateOperation()
     {
-        $this->crud->setValidation(VacancyRequest::class);
+        $this->crud->setValidation(ContactRequest::class);
 
         $this->crud->addField([
             'name' => 'name',

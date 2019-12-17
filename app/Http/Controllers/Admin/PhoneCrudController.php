@@ -23,7 +23,7 @@ class PhoneCrudController extends CrudController
     use CreateOperation;
     use UpdateOperation;
     use DeleteOperation;
-    use ShowOperation;
+    //use ShowOperation;
 
     public function setup()
     {
