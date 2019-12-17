@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\VacancyRequest;
+use App\Http\Requests\PortfolioRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
 use Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
@@ -13,11 +13,11 @@ use Backpack\CRUD\app\Library\CrudPanel\CrudPanel;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 
 /**
- * Class VacancyCrudController
+ * Class PortfolioCrudController
  * @package App\Http\Controllers\Admin
  * @property-read CrudPanel $crud
  */
-class VacancyCrudController extends CrudController
+class PortfolioCrudController extends CrudController
 {
     use ListOperation;
     use CreateOperation;
@@ -27,9 +27,9 @@ class VacancyCrudController extends CrudController
 
     public function setup()
     {
-        $this->crud->setModel('App\Models\Vacancy');
-        $this->crud->setRoute(config('backpack.base.route_prefix') . '/vacancy');
-        $this->crud->setEntityNameStrings('вакансию', 'вакансии');
+        $this->crud->setModel('App\Models\Portfolio');
+        $this->crud->setRoute(config('backpack.base.route_prefix') . '/portfolio');
+        $this->crud->setEntityNameStrings('проект', 'проекты');
     }
 
     protected function setupShowOperation()
@@ -41,45 +41,57 @@ class VacancyCrudController extends CrudController
         ]);
         $this->crud->addColumn([
             'name' => 'description',
-            'type' => 'markdown',
+            'type' => 'text',
             'label' => 'Описание',
+        ]);
+        $this->crud->addColumn([
+            'name' => 'coordinates',
+            'type' => 'googlemap',
+            'default' => '{
+                "lat": 10,
+                "lng": -10
+            }',
+            'label' => "Отметка на карте"
         ]);
     }
 
     protected function setupListOperation()
     {
         $this->crud->addColumn([
-            'name' => "name",
-            'label' => "Название", // Table column heading
-            'type' => "text"
-        ],);
+            'name' => 'name',
+            'type' => 'text',
+            'label' => 'Название',
+        ]);
         $this->crud->addColumn([
-            'name' => "description",
-            'label' => "Описание", // Table column heading
-            'type' => "text"
-        ],);
-        $this->crud->addColumn([
-            'name' => "created_at",
-            'label' => "Создано в", // Table column heading
-            'type' => "datetime"
-        ],);
+            'name' => 'description',
+            'type' => 'text',
+            'label' => 'Описание',
+        ]);
     }
 
     protected function setupCreateOperation()
     {
-        $this->crud->setValidation(VacancyRequest::class);
+        $this->crud->setValidation(PortfolioRequest::class);
 
         $this->crud->addField([
             'name' => 'name',
             'type' => 'text',
-            'label' => "Название вакансии"
+            'label' => "Название"
         ]);
-
         $this->crud->addField([   // TinyMCE
             'name' => 'description',
-            'label' => 'Описание вакансии',
+            'label' => 'Описание',
             'type' => 'tinymce',
         ],);
+        $this->crud->addField([
+            'name' => 'coordinates',
+            'type' => 'googlemap',
+            'default' => '{
+                "lat": 10,
+                "lng": -10
+            }',
+            'label' => "Отметка на карте"
+        ]);
     }
 
     protected function setupUpdateOperation()
