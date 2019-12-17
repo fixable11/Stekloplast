@@ -35,7 +35,7 @@ class ProductCrudController extends CrudController
     {
         $this->crud->setModel('App\Models\Product');
         $this->crud->setRoute(config('backpack.base.route_prefix') . '/product');
-        $this->crud->setEntityNameStrings('product', 'products');
+        $this->crud->setEntityNameStrings('продукт', 'продукты');
     }
 
     protected function setupShowOperation()
@@ -64,7 +64,11 @@ class ProductCrudController extends CrudController
 
     protected function setupListOperation()
     {
-        $this->crud->setColumns(['name']);
+        $this->crud->addColumn([
+            'name' => 'name',
+            'type' => 'test',
+            'label' => 'Название',
+        ]);
         $this->crud->addColumn([
             'name' => 'category_id',
             'type' => 'select',

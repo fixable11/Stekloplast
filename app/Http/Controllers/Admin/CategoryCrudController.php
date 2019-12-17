@@ -34,12 +34,16 @@ class CategoryCrudController extends CrudController
     {
         $this->crud->setModel('App\Models\Category');
         $this->crud->setRoute(config('backpack.base.route_prefix') . '/category');
-        $this->crud->setEntityNameStrings('category', 'categories');
+        $this->crud->setEntityNameStrings('категорию', 'категории');
     }
 
     protected function setupListOperation()
     {
-        $this->crud->setColumns(['name']);
+        $this->crud->addColumn([
+            'name' => 'name',
+            'type' => 'test',
+            'label' => 'Название',
+        ]);
         $this->crud->addColumn([
             'name' => 'parent_id',
             'type' => 'select',
@@ -67,8 +71,6 @@ class CategoryCrudController extends CrudController
             'attribute' => 'name',
             'model' => Category::class,
         ]);
-
-
     }
 
     protected function setupUpdateOperation()
