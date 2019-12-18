@@ -5,8 +5,22 @@
 
 <li class='nav-item'><a class='nav-link' href='{{ backpack_url('product') }}'><i class='nav-icon fa fa-windows'></i> Продукты</a></li>
 <li class='nav-item'><a class='nav-link' href='{{ backpack_url('vacancy') }}'><i class='nav-icon fa fa-picture-o'></i> Вакансии</a></li>
-<li class='nav-item'><a class='nav-link' href='{{ backpack_url('phone') }}'><i class='nav-icon fa fa-mobile-phone'></i> Телефоны</a></li>
 
-<li class='nav-item'><a class='nav-link' href='{{ backpack_url('contact') }}'><i class='nav-icon fa fa-phone'></i> Контакты</a></li>
+<li class="navSubmenu">
+    <div>
+        <span class='nav-link'>Телефоны и контакты <i class='chevron nav-icon fa fa-chevron-right'></i></span>
+    </div>
+    <ul>
+        <li class='nav-item'><a class='nav-link' href='{{ backpack_url('phone') }}'><i class='nav-icon fa fa-mobile-phone'></i> Телефоны</a></li>
+        <li class='nav-item'><a class='nav-link' href='{{ backpack_url('contact') }}'><i class='nav-icon fa fa-phone'></i> Контакты</a></li>
+    </ul>
+</li>
 
 <li class='nav-item'><a class='nav-link' href='{{ backpack_url('portfolio') }}'><i class='nav-icon fa fa-question'></i> Портфолио</a></li>
+
+<li class='nav-item'><a class='nav-link' href='{{ backpack_url('post') }}'><i class='nav-icon fa fa-question'></i> Блог</a></li>
+
+
+<script>
+
+</script>
