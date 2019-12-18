@@ -1,9 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
 
+/**
+ * Class PhoneNumber rule.
+ *
+ * phpcs:ignoreFile
+ */
 class PhoneNumber implements Rule
 {
     /**
@@ -19,9 +26,10 @@ class PhoneNumber implements Rule
     /**
      * Determine if the validation rule passes.
      *
-     * @param  string  $attribute
-     * @param  mixed  $value
-     * @return bool
+     * @param string $attribute Attribute.
+     * @param mixed  $value     Value.
+     *
+     * @return boolean
      */
     public function passes($attribute, $value)
     {

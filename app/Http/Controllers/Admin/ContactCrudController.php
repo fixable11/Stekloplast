@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\ContactRequest;
@@ -11,6 +13,7 @@ use Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
 use Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanel;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
+use Exception;
 
 /**
  * Class ContactCrudController
@@ -25,6 +28,13 @@ class ContactCrudController extends CrudController
     use DeleteOperation;
     use ShowOperation;
 
+    /**
+     * Setup crud controller.
+     *
+     * @throws Exception Exception.
+     *
+     * @return void
+     */
     public function setup()
     {
         $this->crud->setModel('App\Models\Contact');
@@ -32,6 +42,11 @@ class ContactCrudController extends CrudController
         $this->crud->setEntityNameStrings('контакт', 'контакты');
     }
 
+    /**
+     * Show the specific item.
+     *
+     * @return void
+     */
     protected function setupShowOperation()
     {
         $this->crud->addColumn([
@@ -46,20 +61,30 @@ class ContactCrudController extends CrudController
         ]);
     }
 
+    /**
+     * List of items.
+     *
+     * @return void
+     */
     protected function setupListOperation()
     {
         $this->crud->addColumn([
             'name' => "name",
-            'label' => "Название", // Table column heading
+            'label' => "Название",
             'type' => "text"
-        ],);
+        ]);
         $this->crud->addColumn([
             'name' => "description",
-            'label' => "Описание", // Table column heading
+            'label' => "Описание",
             'type' => "text"
-        ],);
+        ]);
     }
 
+    /**
+     * Create item operation.
+     *
+     * @return void
+     */
     protected function setupCreateOperation()
     {
         $this->crud->setValidation(ContactRequest::class);
@@ -70,13 +95,18 @@ class ContactCrudController extends CrudController
             'label' => "Название вакансии"
         ]);
 
-        $this->crud->addField([   // TinyMCE
+        $this->crud->addField([
             'name' => 'description',
             'label' => 'Описание вакансии',
             'type' => 'tinymce',
-        ],);
+        ]);
     }
 
+    /**
+     * Update item operation.
+     *
+     * @return void
+     */
     protected function setupUpdateOperation()
     {
         $this->setupCreateOperation();

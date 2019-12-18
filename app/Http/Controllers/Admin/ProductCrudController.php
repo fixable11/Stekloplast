@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\ProductRequest;
@@ -18,7 +20,7 @@ use Exception;
 /**
  * Class ProductCrudController
  * @package App\Http\Controllers\Admin
- * @property-read  CrudPanel $crud
+ * @property-read CrudPanel $crud
  */
 class ProductCrudController extends CrudController
 {
@@ -29,7 +31,11 @@ class ProductCrudController extends CrudController
     use ShowOperation;
 
     /**
-     * @throws Exception
+     * Setup crud controller.
+     *
+     * @throws Exception Exception.
+     *
+     * @return void
      */
     public function setup()
     {
@@ -38,7 +44,12 @@ class ProductCrudController extends CrudController
         $this->crud->setEntityNameStrings('продукт', 'продукты');
     }
 
-    protected function setupShowOperation()
+    /**
+     * Show the specific item.
+     *
+     * @return void
+     */
+    protected function setupShowOperation(): void
     {
         $this->crud->addColumn([
             'name' => 'name',
@@ -59,19 +70,24 @@ class ProductCrudController extends CrudController
             'type' => 'upload_multiple',
             'disk' => 'public'
         ]);
-        $this->crud->addColumn([   // Table
+        $this->crud->addColumn([
             'name' => 'attributes',
             'label' => 'Атрибуты',
             'type' => 'attributes',
-            'entity_singular' => 'атрибут', // used on the "Add X" button
+            'entity_singular' => 'атрибут',
             'columns' => [
                 'name' => 'Название атрибута',
                 'value' => 'Значение',
             ],
             'min' => 0,
-        ],);
+        ]);
     }
 
+    /**
+     * List of items action.
+     *
+     * @return void
+     */
     protected function setupListOperation()
     {
         $this->crud->addColumn([
@@ -89,6 +105,11 @@ class ProductCrudController extends CrudController
         ]);
     }
 
+    /**
+     * Create item operation.
+     *
+     * @return void
+     */
     protected function setupCreateOperation()
     {
         $this->crud->setValidation(ProductRequest::class);
@@ -126,9 +147,14 @@ class ProductCrudController extends CrudController
                 'values' => 'Значения',
             ],
             'min' => 0, // minimum rows allowed in the table
-        ],);
+        ]);
     }
 
+    /**
+     * Update item operation.
+     *
+     * @return void
+     */
     protected function setupUpdateOperation()
     {
         $this->setupCreateOperation();

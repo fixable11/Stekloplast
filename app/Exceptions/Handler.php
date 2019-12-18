@@ -1,10 +1,17 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Exceptions;
 
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
+/**
+ * Class Handler.
+ */
 class Handler extends ExceptionHandler
 {
     /**
@@ -17,9 +24,7 @@ class Handler extends ExceptionHandler
     ];
 
     /**
-     * A list of the inputs that are never flashed for validation exceptions.
-     *
-     * @var array
+     * @var array $dontFlash A list of the inputs that are never flashed for validation exceptions.
      */
     protected $dontFlash = [
         'password',
@@ -29,8 +34,11 @@ class Handler extends ExceptionHandler
     /**
      * Report or log an exception.
      *
-     * @param  \Exception  $exception
+     * @param Exception $exception Exception class.
+     *
      * @return void
+     *
+     * @throws Exception Exception.
      */
     public function report(Exception $exception)
     {
@@ -40,9 +48,12 @@ class Handler extends ExceptionHandler
     /**
      * Render an exception into an HTTP response.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Exception  $exception
-     * @return \Illuminate\Http\Response
+     * @param Request   $request   Request.
+     * @param Exception $exception Exception.
+     *
+     * @return Response
+     *
+     * phpcs:disable
      */
     public function render($request, Exception $exception)
     {

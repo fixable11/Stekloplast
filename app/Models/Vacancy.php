@@ -1,10 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Class Vacancy model.
+ */
 class Vacancy extends Model
 {
     use CrudTrait;
@@ -15,13 +20,19 @@ class Vacancy extends Model
     |--------------------------------------------------------------------------
     */
 
+    /**
+     * The table associated with the model.
+     *
+     * @var string $table Table.
+     */
     protected $table = 'vacancies';
-    // protected $primaryKey = 'id';
-    // public $timestamps = false;
+
+    /**
+     * The attributes that aren't mass assignable.
+     *
+     * @var array $guarded Guarded array.
+     */
     protected $guarded = ['id'];
-    // protected $fillable = [];
-    // protected $hidden = [];
-    // protected $dates = [];
 
     /*
     |--------------------------------------------------------------------------

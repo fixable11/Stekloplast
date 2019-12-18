@@ -1,24 +1,28 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Class Post model.
+ */
 class Post extends Model
 {
     use CrudTrait;
 
-    /*
-    |--------------------------------------------------------------------------
-    | GLOBAL VARIABLES
-    |--------------------------------------------------------------------------
-    */
-
+    /**
+     * @var string $table The table associated with the model.
+     */
     protected $table = 'posts';
+
+    /**
+     * @var array $guarded The attributes that aren't mass assignable.
+     */
     protected $guarded = ['id'];
-    // protected $hidden = [];
-    // protected $dates = [];
 
     /*
     |--------------------------------------------------------------------------

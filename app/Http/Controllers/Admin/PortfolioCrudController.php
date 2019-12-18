@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\PortfolioRequest;
@@ -11,6 +13,7 @@ use Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
 use Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanel;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
+use Exception;
 
 /**
  * Class PortfolioCrudController
@@ -25,6 +28,13 @@ class PortfolioCrudController extends CrudController
     use DeleteOperation;
     use ShowOperation;
 
+    /**
+     * Setup crud controller.
+     *
+     * @throws Exception Exception.
+     *
+     * @return void
+     */
     public function setup()
     {
         $this->crud->setModel('App\Models\Portfolio');
@@ -32,6 +42,11 @@ class PortfolioCrudController extends CrudController
         $this->crud->setEntityNameStrings('проект', 'проекты');
     }
 
+    /**
+     * Show the specific item.
+     *
+     * @return void
+     */
     protected function setupShowOperation()
     {
         $this->crud->addColumn([
@@ -61,6 +76,11 @@ class PortfolioCrudController extends CrudController
         ]);
     }
 
+    /**
+     * List on items.
+     *
+     * @return void
+     */
     protected function setupListOperation()
     {
         $this->crud->addColumn([
@@ -75,6 +95,11 @@ class PortfolioCrudController extends CrudController
         ]);
     }
 
+    /**
+     * Create item operation.
+     *
+     * @return void
+     */
     protected function setupCreateOperation()
     {
         $this->crud->setValidation(PortfolioRequest::class);
@@ -88,7 +113,7 @@ class PortfolioCrudController extends CrudController
             'name' => 'description',
             'label' => 'Описание',
             'type' => 'tinymce',
-        ],);
+        ]);
         $this->crud->addField([
             'name' => 'coordinates',
             'type' => 'googlemap',
@@ -108,6 +133,11 @@ class PortfolioCrudController extends CrudController
         ]);
     }
 
+    /**
+     * Update item operation.
+     *
+     * @return void
+     */
     protected function setupUpdateOperation()
     {
         $this->setupCreateOperation();

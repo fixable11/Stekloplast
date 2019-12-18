@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\CategoryRequest;
@@ -28,7 +30,11 @@ class CategoryCrudController extends CrudController
     //use ShowOperation;
 
     /**
-     * @throws Exception
+     * Setup crud controller.
+     *
+     * @throws Exception Exception.
+     *
+     * @return void
      */
     public function setup()
     {
@@ -37,7 +43,12 @@ class CategoryCrudController extends CrudController
         $this->crud->setEntityNameStrings('категорию', 'категории');
     }
 
-    protected function setupListOperation()
+    /**
+     * List of items.
+     *
+     * @return void
+     */
+    protected function setupListOperation(): void
     {
         $this->crud->addColumn([
             'name' => 'name',
@@ -54,7 +65,12 @@ class CategoryCrudController extends CrudController
         ]);
     }
 
-    protected function setupCreateOperation()
+    /**
+     * Create operation.
+     *
+     * @return void
+     */
+    protected function setupCreateOperation(): void
     {
         $this->crud->setValidation(CategoryRequest::class);
 
@@ -73,7 +89,12 @@ class CategoryCrudController extends CrudController
         ]);
     }
 
-    protected function setupUpdateOperation()
+    /**
+     * Update operation.
+     *
+     * @return void
+     */
+    protected function setupUpdateOperation(): void
     {
         $this->setupCreateOperation();
     }

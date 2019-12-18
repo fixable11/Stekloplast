@@ -1,16 +1,21 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 use Illuminate\Foundation\Http\FormRequest;
 
+/**
+ * Class VacancyRequest.
+ */
 class VacancyRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      *
-     * @return bool
+     * @return boolean
      */
     public function authorize()
     {

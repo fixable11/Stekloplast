@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\PostRequest;
@@ -11,6 +13,7 @@ use Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
 use Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanel;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
+use Exception;
 
 /**
  * Class PostCrudController
@@ -25,6 +28,13 @@ class PostCrudController extends CrudController
     use DeleteOperation;
     use ShowOperation;
 
+    /**
+     * Setup crud controller.
+     *
+     * @throws Exception Exception.
+     *
+     * @return void
+     */
     public function setup()
     {
         $this->crud->setModel('App\Models\Post');
@@ -32,6 +42,11 @@ class PostCrudController extends CrudController
         $this->crud->setEntityNameStrings('пост', 'посты');
     }
 
+    /**
+     * Show the specific item.
+     *
+     * @return void
+     */
     protected function setupShowOperation()
     {
         $this->crud->addColumn([
@@ -46,6 +61,11 @@ class PostCrudController extends CrudController
         ]);
     }
 
+    /**
+     * List on items.
+     *
+     * @return void
+     */
     protected function setupListOperation()
     {
         $this->crud->addColumn([
@@ -60,6 +80,11 @@ class PostCrudController extends CrudController
         ]);
     }
 
+    /**
+     * Create item operation.
+     *
+     * @return void
+     */
     protected function setupCreateOperation()
     {
         $this->crud->setValidation(PostRequest::class);
@@ -76,6 +101,11 @@ class PostCrudController extends CrudController
         ]);
     }
 
+    /**
+     * Update item operation.
+     *
+     * @return void
+     */
     protected function setupUpdateOperation()
     {
         $this->setupCreateOperation();
