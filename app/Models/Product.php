@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class Product extends Model
 {
@@ -24,17 +25,27 @@ class Product extends Model
         'attributes' => '{}',
     ];
     protected $casts = [
-        'attributes' => 'array'
+        'attributes' => 'array',
+        'photos' => 'array',
     ];
-    // protected $fillable = [];
-    // protected $hidden = [];
-    // protected $dates = [];
 
     /*
     |--------------------------------------------------------------------------
     | FUNCTIONS
     |--------------------------------------------------------------------------
     */
+
+    public static function boot()
+    {
+        parent::boot();
+        static::deleting(function($obj) {
+            if (count((array) $obj->photos)) {
+                foreach ($obj->photos as $file_path) {
+                    Storage::disk('public')->delete($file_path);
+                }
+            }
+        });
+    }
 
     /*
     |--------------------------------------------------------------------------
@@ -64,4 +75,17 @@ class Product extends Model
     | MUTATORS
     |--------------------------------------------------------------------------
     */
+
+    /**
+     * @param $value
+     */
+    public function setPhotosAttribute($value)
+    {
+        $this->uploadMultipleFilesToDisk(
+            $value,
+            "photos",
+            config('app.disk'),
+            config('app.products_photo_path')
+        );
+    }
 }

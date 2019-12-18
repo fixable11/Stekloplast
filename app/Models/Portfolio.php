@@ -50,10 +50,7 @@ class Portfolio extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
-    public function photos()
-    {
-        return $this->hasMany(PortfolioPhoto::class);
-    }
+
     /*
     |--------------------------------------------------------------------------
     | SCOPES
@@ -81,8 +78,7 @@ class Portfolio extends Model
             $value,
             "photos",
             config('app.disk'),
-            config('app.photo_path')
+            config('app.portfolio_photo_path')
         );
     }
-
 }

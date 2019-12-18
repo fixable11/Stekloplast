@@ -53,6 +53,12 @@ class ProductCrudController extends CrudController
             'attribute' => "name",
             'model' => Category::class,
         ]);
+        $this->crud->addColumn([
+            'name' => 'photos',
+            'label' => 'Фотографии',
+            'type' => 'upload_multiple',
+            'disk' => 'public'
+        ]);
         $this->crud->addColumn([   // Table
             'name' => 'attributes',
             'label' => 'Атрибуты',
@@ -100,6 +106,14 @@ class ProductCrudController extends CrudController
             'entity' => 'category',
             'attribute' => 'name',
             'model' => Category::class,
+        ]);
+
+        $this->crud->addField([
+            'name' => 'photos',
+            'label' => 'Фотографии',
+            'type' => 'upload_multiple',
+            'upload' => true,
+            'disk' => 'public'
         ]);
 
         $this->crud->addField([   // Table
