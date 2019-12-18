@@ -53,6 +53,12 @@ class PortfolioCrudController extends CrudController
             }',
             'label' => "Отметка на карте"
         ]);
+        $this->crud->addColumn([
+            'name' => 'photos',
+            'label' => 'Фотографии',
+            'type' => 'upload_multiple',
+            'disk' => 'public'
+        ]);
     }
 
     protected function setupListOperation()
@@ -78,7 +84,7 @@ class PortfolioCrudController extends CrudController
             'type' => 'text',
             'label' => "Название"
         ]);
-        $this->crud->addField([   // TinyMCE
+        $this->crud->addField([
             'name' => 'description',
             'label' => 'Описание',
             'type' => 'tinymce',
@@ -91,6 +97,14 @@ class PortfolioCrudController extends CrudController
                 "lng": -10
             }',
             'label' => "Отметка на карте"
+        ]);
+
+        $this->crud->addField([
+            'name' => 'photos',
+            'label' => 'Фотографии',
+            'type' => 'upload_multiple',
+            'upload' => true,
+            'disk' => 'public'
         ]);
     }
 

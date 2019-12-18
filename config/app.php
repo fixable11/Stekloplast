@@ -121,6 +121,9 @@ return [
 
     'key' => env('APP_KEY'),
 
+    'photo_path' => "uploads/photos/products",
+    'disk' => "public",
+
     'cipher' => 'AES-256-CBC',
 
     /*

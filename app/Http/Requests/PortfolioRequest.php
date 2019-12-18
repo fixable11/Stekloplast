@@ -28,6 +28,7 @@ class PortfolioRequest extends FormRequest
         return [
             'name' => 'required|min:3|max:255',
             'description' => 'required',
+            'photos.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:10000|nullable',
         ];
     }
 
