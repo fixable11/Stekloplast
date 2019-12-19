@@ -58,3 +58,5 @@ perm:
 	sudo chown ${USER}:${USER} resources/ -R
 	sudo chown ${USER}:${USER} routes/ -R
 	sudo chown ${USER}:${USER} vendor/ -R
+	sudo chown ${USER}:${USER} var/ -R
+	sudo chown ${USER}:${USER} client/ -R

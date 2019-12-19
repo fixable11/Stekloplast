@@ -15,6 +15,19 @@ services:
         ports:
             - "8080:80"
             - "8090:443"
+    nginx-frontend:
+        container_name: nginx-frontend-container
+        build:
+            context: ./docker/frontend/
+            dockerfile: nginx.docker
+        volumes:
+            - ./client:/app
+            - ./var/frontend-log/nginx:/var/log/nginx:cached
+        depends_on:
+            - node
+        ports:
+            - "4000:80"
+            - "4001:443"
     php-fpm:
         container_name: php-fpm-container
         build:
@@ -31,11 +44,15 @@ services:
             PHP_IDE_CONFIG: "serverName=docker"
             # for macOS IP 10.254.254.254
     node:
-        image: node:11.13-alpine
+        build:
+            context: ./docker/frontend
+            dockerfile: node.docker
         volumes:
             - ./:/app
         working_dir: /app
         tty: true
+        ports:
+            - "3000:3000"
     mysql:
         container_name: mysql-container
         image: mysql:5.7
