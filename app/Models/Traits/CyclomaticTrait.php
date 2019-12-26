@@ -10,14 +10,14 @@ use Illuminate\Support\Facades\Log;
 
 trait CyclomaticTrait
 {
-    protected static $ids = [];
-
+    protected static $depthSize = 15;
+    protected static $depth = 0;
     protected function guardCyclomatic()
     {
-        if (in_array($this->id, self::$ids)) {
+        self::$depth += 1;
+        if (self::$depth >= self::$depthSize) {
             Log::error('Cyclomatic relation ' . $this);
             throw new DomainException('Cyclomatic relation.');
         }
-        self::$ids[] = $this->id;
     }
 }

@@ -18,13 +18,8 @@ class CategoryService
         return Category::findOrFail($id);
     }
 
-    public function getOneWithParentCategories(int $id)
+    public function getOneWith(int $id)
     {
-        return Category::with('parent')->findOrFail($id);
-    }
-
-    public function getOneWithProducts(int $id)
-    {
-        return Category::with('products')->findOrFail($id);
+        return Category::with(['products', 'parent', 'child'])->findOrFail($id);
     }
 }

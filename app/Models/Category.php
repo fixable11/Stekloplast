@@ -9,6 +9,7 @@ use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 /**
  * Class Category model.
@@ -33,6 +34,8 @@ class Category extends Model
      */
     protected $guarded = ['id'];
 
+    protected $hidden = ['lft', 'rgt'];
+
     /*
     |--------------------------------------------------------------------------
     | RELATIONS
@@ -52,15 +55,15 @@ class Category extends Model
     }
 
     /**
-     * Get children category.
+     * Get child category.
      *
-     * @return HasMany
+     * @return HasOne
      */
-    public function children()
+    public function child()
     {
         $this->guardCyclomatic();
 
-        return $this->hasMany(Category::class, 'parent_id');
+        return $this->hasOne(Category::class, 'parent_id');
     }
 
     /**
@@ -84,6 +87,34 @@ class Category extends Model
     | ACCESSORS
     |--------------------------------------------------------------------------
     */
+
+    public function getParentsAttribute()
+    {
+        $parents = collect([]);
+
+        $parent = $this->parent;
+
+        while(!is_null($parent)) {
+            $parents->push($parent);
+            $parent = $parent->parent;
+        }
+
+        return $parents;
+    }
+
+    public function getChildrenAttribute()
+    {
+        $children = collect([]);
+
+        $child = $this->child;
+
+        while(!is_null($child)) {
+            $children->push($child);
+            $child = $child->child;
+        }
+
+        return $children;
+    }
 
     /*
     |--------------------------------------------------------------------------

@@ -39,6 +39,6 @@ class CategoryController extends Controller
      */
     public function show(int $productId)
     {
-        return new CategoryResource($this->categoryService->getOneWithProducts($productId));
+        return new CategoryResource($this->categoryService->getOneWith($productId));
     }
 }
