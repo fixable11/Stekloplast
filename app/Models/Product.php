@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Storage;
 
 /**
  * Class Product.
+ * @method static findOrFail(int $id)
  */
 class Product extends Model
 {

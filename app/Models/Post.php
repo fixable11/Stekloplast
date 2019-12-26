@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class Post model.
+ * @method static findOrFail(int $id)
  */
 class Post extends Model
 {
