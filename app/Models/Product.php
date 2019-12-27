@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Models;
 
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
+use Backpack\CRUD\app\Models\Traits\SpatieTranslatable\HasTranslations;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Facades\Storage;
@@ -16,6 +17,7 @@ use Illuminate\Support\Facades\Storage;
 class Product extends Model
 {
     use CrudTrait;
+    use HasTranslations;
 
     /**
      * @var boolean $timestamps Indicates if the model should be timestamped.
@@ -25,7 +27,7 @@ class Product extends Model
     /**
      * @var boolean $timestamps Indicates if the model should be timestamped.
      */
-    protected $fakeColumns = ['attributes'];
+    //protected $fakeColumns = ['attributes', 'name'];
 
     /**
      * @var string $table The table associated with the model.
@@ -48,6 +50,8 @@ class Product extends Model
     protected $attributes = [
         'attributes' => '{}',
     ];
+
+    protected $translatable = ['name', 'attributes'];
 
     /**
      * @var array $casts The attributes that should be cast to native types.

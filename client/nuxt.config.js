@@ -1,4 +1,9 @@
 import webpack from 'webpack';
+require('dotenv').config();
+
+process.on('uncaughtException', function (err) {
+    console.log(err);
+});
 
 export default {
     mode: 'universal',
@@ -82,7 +87,10 @@ export default {
     ** Axios module configuration
     ** See https://axios.nuxtjs.org/options
     */
-    axios: {},
+    axios: {
+        baseURL: process.env.BASE_URL || 'http://localhost:3000',
+    },
+
     /*
     ** Build configuration
     */
@@ -92,7 +100,8 @@ export default {
             new webpack.ProvidePlugin({
                 $: 'jquery',
                 jQuery: 'jquery',
-                '_': 'lodash'
+                '_': 'lodash',
+                'axios': 'axios'
             })
         ],
         /*

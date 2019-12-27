@@ -19,7 +19,7 @@ class CreateCategoriesTable extends Migration
             $table->unsignedInteger('lft')->default(0);
             $table->unsignedInteger('rgt')->default(0);
             $table->unsignedInteger('depth')->default(0);
-            $table->string('name')->unique();
+            $table->json('name');
         });
 
         Schema::table('categories', function (Blueprint $table) {

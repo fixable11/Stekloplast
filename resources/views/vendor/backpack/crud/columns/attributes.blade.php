@@ -11,6 +11,8 @@
     // if this attribute isn't using attribute casting, decode it
     if (is_string($value)) {
         $value = json_decode($value);
+        //dd($value->ru);
+        //$value = $value->ru;
     }
 
 

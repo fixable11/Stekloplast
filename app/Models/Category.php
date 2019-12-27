@@ -6,6 +6,7 @@ namespace App\Models;
 
 use App\Models\Traits\CyclomaticTrait;
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
+use Backpack\CRUD\app\Models\Traits\SpatieTranslatable\HasTranslations;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -17,7 +18,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  */
 class Category extends Model
 {
-    use CrudTrait, CyclomaticTrait;
+    use CrudTrait, CyclomaticTrait, HasTranslations;
 
     /**
      * @var boolean $timestamps Indicates if the model should be timestamped.
@@ -35,6 +36,8 @@ class Category extends Model
     protected $guarded = ['id'];
 
     protected $hidden = ['lft', 'rgt'];
+
+    protected $translatable = ['name'];
 
     /*
     |--------------------------------------------------------------------------

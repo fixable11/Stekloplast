@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Models;
 
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
+use Backpack\CRUD\app\Models\Traits\SpatieTranslatable\HasTranslations;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -12,7 +13,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Contact extends Model
 {
-    use CrudTrait;
+    use CrudTrait, HasTranslations;
 
     /**
      * @var boolean $timestamps Indicates if the model should be timestamped.
@@ -29,6 +30,7 @@ class Contact extends Model
      */
     protected $guarded = ['id'];
 
+    protected $translatable = ['name', 'description'];
     /*
     |--------------------------------------------------------------------------
     | FUNCTIONS

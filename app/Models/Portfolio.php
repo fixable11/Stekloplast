@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Models;
 
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
+use Backpack\CRUD\app\Models\Traits\SpatieTranslatable\HasTranslations;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 
@@ -13,7 +14,7 @@ use Illuminate\Support\Facades\Storage;
  */
 class Portfolio extends Model
 {
-    use CrudTrait;
+    use CrudTrait, HasTranslations;
 
     /*
     |--------------------------------------------------------------------------
@@ -53,6 +54,8 @@ class Portfolio extends Model
     protected $casts = [
         'photos' => 'array'
     ];
+
+    protected $translatable = ['name', 'description'];
 
     /**
      * The "booting" method of the model.
